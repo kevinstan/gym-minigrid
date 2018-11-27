@@ -1344,6 +1344,23 @@ class MiniGridEnv(gym.Env):
         ])
         r.pop()
 
+        # Draw the 2nd agent (Multi-Agent)
+        r.push()
+        r.translate(
+            CELL_PIXELS * (self.agent_pos[0] + 1.5),
+            CELL_PIXELS * (self.agent_pos[1] + 1.5)
+        )
+        r.rotate(self.agent_dir * 90)
+        r.setLineColor(0, 0, 255)
+        r.setColor(0, 0, 255)
+        r.drawPolygon([
+            (-12, 10),
+            ( 12,  0),
+            (-12, -10)
+        ])
+        r.pop()
+
+
         # Compute which cells are visible to the agent
         _, vis_mask = self.gen_obs_grid()
 
